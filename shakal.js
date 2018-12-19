@@ -1453,7 +1453,7 @@ function Game()
 		{
 			h1.innerText += "Лес";
 			h2.innerText += "Эта карта закрыта. Возможно, именно за ней прячется сокровище.";
-			//h1.innerText += type;
+			/*h1.innerText += type;*/
 		}
 	}
 
