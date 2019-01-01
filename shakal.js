@@ -17,6 +17,7 @@ function Game()
 	var cheliki;
 	var block = [];
 	var hodd = [];
+	var mus;
 
 	this.Start = function()
 	{		
@@ -63,6 +64,8 @@ function Game()
 
 		susha = Shuffle(susha);
 		susha = Shuffle(susha);
+
+		mus = document.getElementById('mus');
 
 		music = document.getElementById('music');
 		body = document.getElementsByTagName('body');
@@ -218,13 +221,42 @@ function Game()
 			{
 				zvuk.play();
 			}
-		}		
+		}	
+
+		mus.onclick = function()
+		{
+			if(music.volume > 0)
+			{
+				music.volume = 0;
+				mus.style.background ='url(./nenota.png) no-repeat';
+				mus.style['background-size'] = '100%';
+			}
+			else
+			{
+				music.volume = slider.value/100;
+				mus.style.background = 'url(./nota.png) no-repeat';
+				mus.style['background-size'] = '100%';
+
+			}
+
+
+		}	
 
 		slider = document.getElementById('myRange');
 		slider.value = '50';
 		music.volume = 0.5;
 		slider.oninput = function() 
 		{
+			if(this.value/100 > 0)
+			{
+				mus.style.background ='url(./nota.png) no-repeat';
+				mus.style['background-size'] = '100%';		
+			}
+			else
+			{
+				mus.style.background = 'url(./nenota.png) no-repeat';
+				mus.style['background-size'] = '100%';
+			}
 		    music.volume = this.value/100;
 		    zvuk.volume = this.value/100;
 		}
@@ -322,17 +354,25 @@ function Game()
 			var flag = false;
 			for(k = 0; k <= selected.kletka.players.length; k++)
 			{
-				if(selected.kletka.players[k].skill == 'no')
+				if(selected.kletka.players[k].skill == 'no' || selected.kletka.players[k].skill == 'ben')
 				{
 					if(((selected.team == 1 || selected.team == 3) && a == 0 && b == 1) || ((selected.team == 2 || selected.team == 4) && a == 1 && b == 0))
 					{
 						flag = true;
 						break;
 					}
+					else
+					{
+						//"сюда ходить нельзя""
+					}
 					
 				}
+				else
+				{
+					//"управлять кораблем могут только пираты"
+				}
 			}
-			if(flag)
+			if(flag) //если может плыть в эту сторону и есть кому управлять
 			{
 				if(eta.kletka.players.length > 0)
 				{
@@ -354,7 +394,7 @@ function Game()
 						else if(eta.kletka.players[i].team != selected.team)
 						{
 							eta.kletka.players = eta.kletka.players.filter(p => p!=selected);
-							eta.kletka.players[i].ship.appendChild(eta.kletka.players[i]);
+							eta.kletka.players[i].ship.div.appendChild(eta.kletka.players[i]);
 						}
 					}
 				}
@@ -374,6 +414,11 @@ function Game()
 					selected.style.background = 'url(./ship3.png)';
 				else if(selected.team == 4)
 					selected.style.background = 'url(./ship4.png)';
+				for(i = 0; i < team[selected.team].length; i++)
+				{
+					if(team[selected.team][i].trap == 6)
+						team[selected.team][i].trap = 0;
+				}
 				selected = null;
 				Hod();
 				return;
@@ -617,7 +662,6 @@ function Game()
 			{
 				if(team[selected.team][i].trap == 6)
 					team[selected.team][i].trap = 0;
-				
 			}
 			
 			if(eta.kletka.open == false)
@@ -726,18 +770,12 @@ function Game()
 							    {
 								    if(selected.skill == 'friday' || eta.kletka.players[i].skill == 'friday') // умирают оба
 								    {
-									    selected.parentElement.kletka.players = selected.parentElement.kletka.players.filter(p => p!=selected);
-									    selected.parentElement.removeChild(selected);
-									    team[selected.team] = team[selected.team].filter(p => p!=selected);
-									    team[eta.kletka.players[i].team] = team[eta.kletka.players[i].team].filter(p => p!=selected); //вроде бред
-									    eta.kletka.players[i].div.parentElement.removeChild(eta.kletka.players[i]);
-									    eta.kletka.players.splice(i, 1);
+								  		Kill(eta.kletka.players, eta.kletka.players[i]);
+								    	Kill(selected.parentElement.kletka.players, selected);
 								    }
 								    else //умирает выбранный
-								    {		
-									    selected.parentElement.kletka.players = selected.parentElement.kletka.players.filter(p => p!=selected);
-									    selected.parentElement.removeChild(selected);
-									    team[selected.team] = team[selected.team].filter(p => p!=selected);
+								    {	
+								    	Kill(selected.parentElement.kletka.players, selected);	
 									    i = i - 1;
 								    }   
 							    }
@@ -745,10 +783,7 @@ function Game()
 							    {
 								    if(missionary /*|| selected.skill == 'friday'*/) //миссионер не даст ходить //умирает выбранный
 								    {
-									    selected.parentElement.kletka.players = selected.parentElement.kletka.players.filter(p => p!=selected);
-									    selected.parentElement.removeChild(selected);
-									    team[selected.team] = team[selected.team].filter(p => p!=selected);
-									    selected = null;
+									    Kill(selected.parentElement.kletka.players, selected);
 									    Hod();
 								    }
 								    else
@@ -798,10 +833,8 @@ function Game()
 									    }
 									    else // умирает стоящий
 									    {
-										    eta.kletka.players[i].trap = 0;
-										    eta.kletka.players[i].ship.div.appendChild(eta.kletka.players[i].parentElement.removeChild(eta.kletka.players[i]));
-										    eta.kletka.players[i].ship.players.push(eta.kletka.players[i]);
-										    eta.kletka.players = eta.kletka.players.filter(p => p!=eta.kletka.players[i]);
+									    	eta.kletka.players[i].trap = 0;
+									    	Kill(eta.kletka.players, eta.kletka.players[i]);
 
 									    }
 									    selected.parentElement.kletka.players = selected.parentElement.kletka.players.filter(p => p!=selected);
@@ -814,12 +847,8 @@ function Game()
 							    else if((eta.kletka.players[i].skill == 'friday' && selected.skill == 'missionary') || //умирают оба
 								    (eta.kletka.players[i].skill == 'missionary' && selected.skill == 'friday'))
 							    {
-								    selected.parentElement.kletka.players = selected.parentElement.kletka.players.filter(p => p!=selected);
-								    selected.parentElement.removeChild(selected);
-								    team[selected.team] = team[selected.team].filter(p => p!=selected);
-								    team[eta.kletka.players[i].team] = team[eta.kletka.players[i].team].filter(p => p!=selected);
-								    eta.kletka.players[i].div.parentElement.removeChild(eta.kletka.players[i]);
-								    eta.kletka.players.splice(i, 1);
+							    	Kill(eta.kletka.players, eta.kletka.players[i]);
+							    	Kill(selected.parentElement.kletka.players, selected);
 							    }
                             }
 							
@@ -1337,7 +1366,7 @@ function Game()
 			else if(type == 'arrow')
 			{
 				h1.innerText += "Указатель";
-				h2.innerText += "Теперь вы можете идти только в направлении одной из стелок, иначе заблудитесь и умрете.";
+				h2.innerText += "С указателем не поспоришь.";
 			}
 			else if(type == 'pustina')
 			{
@@ -1453,7 +1482,7 @@ function Game()
 		{
 			h1.innerText += "Лес";
 			h2.innerText += "Эта карта закрыта. Возможно, именно за ней прячется сокровище.";
-			/*h1.innerText += type;*/
+			//h1.innerText += type;
 		}
 	}
 
@@ -1663,6 +1692,24 @@ function Game()
     function GameOver()
     {
     	button.style.background = 'red';
+    }
+
+    function Kill(arr, people, pteam)
+    {
+    	var sel = false;
+    	if(!pteam)
+    		pteam = people.team;
+    	if(people == selected)
+    		sel = true;
+    	arr = arr.filter(p => p!=people);
+	    people.parentElement.removeChild(people);
+	    team[pteam] = team[pteam].filter(p => p!=people);
+	    if(sel == true)
+	    {
+			selected = null;
+			Hod();
+			return;
+	    }
     }
 
 	function Fishka(event)
