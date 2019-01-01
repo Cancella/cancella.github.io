@@ -458,7 +458,7 @@ function Game()
 		{
 			var l = Math.abs(eta.mesto.x - selected.parentElement.mesto.x);
 			var r = Math.abs(eta.mesto.y - selected.parentElement.mesto.y);
-			if((l == 2 && r == 1) || (r == 2 && l == 1) && r != l)
+			if(((l == 2 && r == 1) || (r == 2 && l == 1)) && r != l)
 			{
 				canStep = true;
 				drug = false;
