@@ -298,6 +298,7 @@
                 left: 65;
                 top: 60;
                 visibility: hidden;
+                background: ;
             }
             .hod2
             {
@@ -396,7 +397,9 @@
             }
             .inactive
             {
-                background: #52473b63;
+                background: url(./bottle2.gif) 50% 50% no-repeat;
+                background-size: 60%;
+               /* background: #52473b63;*/
                 color: #ffffff40;
             }
             .active:hover
@@ -462,6 +465,19 @@
                 background: url(./circle.png);
                 background-size: 100% auto;
             }
+            .mus
+            {
+                bottom: 18%;
+                right: 10%;
+                position: absolute;
+                z-index: 15;
+                position: fixed;
+                height: 40px;
+                width: 40px;
+                background: url(./nota.png) no-repeat;
+                background-size: 100%;
+            }
+
             
 
 
@@ -469,7 +485,7 @@
 
     	<script src="./shakal.js"></script>
         <!--<audio src="./Pirates.mp3" autoplay="autoplay" loop="loop" preload="auto" id="music" volume="50"></audio>-->
-        <audio src="./Pirates.mp3" autoplay="autoplay" loop="loop" preload="auto" id="music" ></audio>
+        <audio src="./zvuk1.mp3" autoplay="autoplay" loop="loop" preload="auto" id="music" ></audio>
         <audio src="./zvuk2.mp3" id="zvuk"></audio>
 
         <div class="jakal" id="jakal"></div>
@@ -514,6 +530,7 @@
         <div class="volumed" id="volume">
             <input type="range" min="0" max="100" value="50" class="slider" id="myRange">
         </div>
+        <div class="mus" id="mus"></div>
 
 
 
