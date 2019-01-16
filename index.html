@@ -30,9 +30,9 @@
     		}
             .opisanie
             {
-                
+                pointer-events:none;
                 width: 230px;
-                z-index: 10;
+                z-index: 16;
                 background: #e2cdacd6;
                 position: absolute;
                 visibility: hidden;
@@ -44,8 +44,52 @@
                 text-align: center;
                 padding-left: 20px;
                 padding-right: 20px;
+                word-wrap: break-word;
 
             }
+            @keyframes example 
+            { 
+				0% {transform: rotate(15deg)} 
+				50% {transform: rotate(-15deg)} 
+				100% {transform: rotate(15deg)} 
+			}
+			.shipik
+			{
+				pointer-events:none;
+				height: 100%; 
+				width: 100%;
+				position: absolute; 
+				background: no-repeat; 
+				background-size: contain !important; 
+				animation-name: example; 
+				animation-duration: 6s; 
+				animation-timing-function: ease-in-out; 
+				animation-iteration-count: infinite;
+			}
+			.ship3:hover > .shipik3
+			{
+				filter: drop-shadow(0 0 3px white);
+				/*background: url(./ship31selected.png) no-repeat !important;
+				background-size: contain !important;*/
+			}
+			.ship4:hover > .shipik4
+			{
+				filter: drop-shadow(0 0 3px white);
+				/*background: url(./ship31selected.png) no-repeat !important;
+				background-size: contain !important;*/
+			}
+			.ship4:hover > .shipik4
+			{
+				filter: drop-shadow(0 0 3px white);
+				/*background: url(./ship31selected.png) no-repeat !important;
+				background-size: contain !important;*/
+			}
+			.ship1:hover > .shipik1
+			{
+				filter: drop-shadow(0 0 3px white);
+				/*background: url(./ship31selected.png) no-repeat !important;
+				background-size: contain !important;*/
+			}
             h1
             {
                 margin-top: 15px;
@@ -95,6 +139,7 @@
     		}
     		.people
     		{
+    			position: relative;
     			border-radius: 15px; 
     			height: 19px;
     			width: 19px;
@@ -143,7 +188,7 @@
                 box-shadow: 0 0 20px white !important;
     		}
 
-            .ship1:hover
+            /*.ship1:hover
             {
                 background: url(./ship1selected.png) !important;
                 background-size: contain !important;
@@ -155,9 +200,9 @@
                 background-size: contain !important;
                 outline: none !important;
             }
-            .ship3:hover
+            .shipik3:hover
             {
-                background: url(./ship3selected.png) !important;
+                background: url(./ship31selected.png) no-repeat !important;
                 background-size: contain !important;
                 outline: none !important;
             }
@@ -166,7 +211,7 @@
                 background: url(./ship4selected.png) !important;
                 background-size: contain !important;
                 outline: none !important;
-            }
+            }*/
 
             .gold
             {
@@ -291,7 +336,7 @@
                 font-size: 40;
                 font-weight: 700;
                 position: fixed;
-                z-index: 6;
+                z-index: 10;
             }
             .hod1
             {
@@ -392,19 +437,21 @@
             }
             .active
             {
-                background: #172729;
-                color: #ffffff8f;
+            	background: url(./bottle2.gif) 50% 50% no-repeat;
+                background-size: 60%;
+                /*background: #172729;*/
+                /*color: #ffffff8f;*/
             }
             .inactive
             {
-                background: url(./bottle2.gif) 50% 50% no-repeat;
+                /*background: url(./bottle2.gif) 50% 50% no-repeat;
                 background-size: 60%;
-               /* background: #52473b63;*/
-                color: #ffffff40;
+                background: #52473b63;
+                color: #ffffff40;*/
             }
             .active:hover
             { 
-                box-shadow: 0 0 20px #292525;
+                /*box-shadow: 0 0 20px #292525;*/
             }
             .text
             {
@@ -440,14 +487,14 @@
                 bottom: 15%;
                 right: 2%;
                 position: absolute;
-                z-index: 15;
+                z-index: 9;
                 position: fixed;
             }
             .slider
             {
                -webkit-appearance: none;
                 border-radius: 10px;
-                z-index: 15;
+                z-index: 9;
                 background: #404040;
                 outline: none;
                 -webkit-transition: .2s;
@@ -519,7 +566,7 @@
         </div>
         <div class="userum inactive" id="userum">
             <div class="text">
-            Ром
+            
             </div>
         </div>
         <div class="userumb"></div>

@@ -1881,25 +1881,35 @@ function Game()
 		a[y][x].ship = true;
 		a[y][x].div.setAttribute('class','card ship');
 		a[y][x].div.team = team;
+		var ndiv = document.createElement('div');
+		ndiv.classList.add('shipik');
+		a[y][x].div.appendChild(ndiv);
+		//a[y][x].div.childNodes[3] = ndiv;
 		if(team == 1)
 		{
+			/*a[y][x].div.classList.add('ship1');
+			a[y][x].div.style.background = 'url(./ship1.png)';*/
+			a[y][x].div.firstChild.classList.add('shipik1');
 			a[y][x].div.classList.add('ship1');
-			a[y][x].div.style.background = 'url(./ship1.png)';
+			ndiv.style.background = 'url(./ship11.png)';
 		}
 		if(team == 2)
 		{
+			a[y][x].div.firstChild.classList.add('shipik2');
 			a[y][x].div.classList.add('ship2');
-			a[y][x].div.style.background = 'url(./ship2.png)';
+			ndiv.style.background = 'url(./ship21.png)';
 		}
 		if(team == 3)
 		{
+			a[y][x].div.firstChild.classList.add('shipik3');
 			a[y][x].div.classList.add('ship3');
-			a[y][x].div.style.background = 'url(./ship3.png)';
+			ndiv.style.background = 'url(./ship31.png)';
 		}
 		if(team == 4)
 		{
+			a[y][x].div.firstChild.classList.add('shipik4');
 			a[y][x].div.classList.add('ship4');
-			a[y][x].div.style.background = 'url(./ship4.png)';
+			ndiv.style.background = 'url(./ship41.png)';
 		}
 		for(i = 1; i <= 3; i++) 
 		{ 
