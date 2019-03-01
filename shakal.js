@@ -4,7 +4,7 @@ function Game()
 	var hod;
 	var selected = null;
 	var selectedgold = null;
-	var selectedtreasure = null;
+	//var selectedtreasure = null;
 	var susha = [];
 	var pole = [];
 	var opisanie;
@@ -18,6 +18,14 @@ function Game()
 	var block = [];
 	var hodd = [];
 	var mus;
+	var bottlea;
+	var bottleal;
+	var birds;
+	var birdst;
+	var rum = [];
+	var giveup;
+	var colors = [null, 'white', 'black', '#9d0f04','fad201'];
+	var teams = [1, 2, 3, 4];
 
 	this.Start = function()
 	{		
@@ -44,7 +52,6 @@ function Game()
 		CreateCard(susha, 3, 3, 'box', 'no');
 		CreateCard(susha, 4, 2, 'box', 'no');
 		CreateCard(susha, 5, 1, 'box', 'no'); 
-		CreateCard(susha, 0, 1, 'treasure', 'no');
 		CreateCard(susha, 0, 3, 'cannibal', 'no'); //        2!!!!!!!
 		CreateCard(susha, 0, 2, 'balloon', 'no');
 		CreateCard(susha, 0, 2, 'gun', 'no'); 
@@ -52,7 +59,7 @@ function Game()
 		CreateCard(susha, 0, 1, 'missionary', 'no');
 		CreateCard(susha, 0, 1, 'friday', 'no');
 		CreateCard(susha, 0, 1,'ben', 'no');
-		CreateCard(susha, 0, 3,'rome1', 'no');
+		CreateCard(susha, 0, 4,'rome1', 'no'); //         3!!!!!!! (сокровища нет)
 		CreateCard(susha, 0, 2, 'rome2', 'no');
 		CreateCard(susha, 0, 1,'rome3', 'no');
 		CreateCard(susha, 0, 1, 'plane', 'no'); 
@@ -65,8 +72,24 @@ function Game()
 		susha = Shuffle(susha);
 		susha = Shuffle(susha);
 
-		mus = document.getElementById('mus');
+		let makeTimeout = function()
+		{
+			setTimeout(function(){
+				makeTimeout();
+				let rn = Math.random()*4+2;
+				let dir = Math.random()>0.5?0:1;
+				for(let i = 0; i < rn; i++)
+				{
+					setTimeout(() => Birds(dir), Math.random() * 5000);
+				}
+			}, Math.random() * 30000 + 1000);
+		};
+		makeTimeout();
 
+
+		mus = document.getElementById('mus');
+		bottlea = document.getElementById('bottlea');
+		bottleal = document.getElementById('bottleal');
 		music = document.getElementById('music');
 		body = document.getElementsByTagName('body');
 		body[0].onclick = Music;
@@ -260,6 +283,18 @@ function Game()
 		    music.volume = this.value/100;
 		    zvuk.volume = this.value/100;
 		}
+		rum.push('0');
+		rum.push(document.getElementById('block1').childNodes[7]);
+		rum.push(document.getElementById('block2').childNodes[7]);
+		rum.push(document.getElementById('block3').childNodes[7]);
+		rum.push(document.getElementById('block4').childNodes[7]);
+		for(i = 1; i <= 4; i++)
+			rum[i].onclick = Button;
+
+		giveup = document.getElementById('giveup');
+		giveup.onclick = () => GameOver(hod);
+
+
 			
 			
 
@@ -310,14 +345,14 @@ function Game()
 		if(selected == null && eta.kletka && eta.kletka.ship && hod == eta.team)
 		{
 			selected = eta;
-			if(eta.team == 1)
-				eta.style.background = 'url(./ship1selected.png)';
-			else if(eta.team == 2)
+			//if(eta.team == 1)
+				eta.childNodes[0].style.filter = 'drop-shadow(0 0 9px white)';
+			/*else if(eta.team == 2)
 				eta.style.background = 'url(./ship2selected.png)';
 			else if(eta.team == 3)
 				eta.style.background = 'url(./ship3selected.png)';
 			else if(eta.team == 4)
-				eta.style.background = 'url(./ship4selected.png)';
+				eta.style.background = 'url(./ship4selected.png)';*/
 			return;
 		}
 
@@ -384,17 +419,24 @@ function Game()
 							{
 								if(selected.kletka.players[j].skill == 'missionary' || selected.kletka.players[j].skill == 'friday')
 								{
+									Kill(eta.kletka.players, eta.kletka.players[i]);
+									Kill(selected.kletka.players,selected.kletka.players[j]);
+									
+								}
+									
+								/*{
 									eta.removeChild(eta.kletka.players[i]);
 									eta.kletka.players = eta.kletka.players.filter(p => p!=selected);
 									selected.removeChild(selected.kletka.players[j]);
 									selected.kletka.players.splice(selected.kletka.players[j]);
-								}
+								}*/
 							}
 						}
 						else if(eta.kletka.players[i].team != selected.team)
 						{
-							eta.kletka.players = eta.kletka.players.filter(p => p!=selected);
-							eta.kletka.players[i].ship.div.appendChild(eta.kletka.players[i]);
+							Kill(eta.kletka.players, eta.kletka.players[i])
+							/*eta.kletka.players = eta.kletka.players.filter(p => p!=selected);
+							eta.kletka.players[i].ship.div.appendChild(eta.kletka.players[i]);*/
 						}
 					}
 				}
@@ -406,14 +448,15 @@ function Game()
 				selected.mesto.y = selected.mesto.y + c;
 				eta.mesto.x = eta.mesto.x - d;
 				eta.mesto.y = eta.mesto.y - c;
-				if(selected.team == 1)
+				/*if(selected.team == 1)
 					selected.style.background = 'url(./ship1.png)';
 				else if(selected.team == 2)
 					selected.style.background = 'url(./ship2.png)';
 				else if(selected.team == 3)
 					selected.style.background = 'url(./ship3.png)';
 				else if(selected.team == 4)
-					selected.style.background = 'url(./ship4.png)';
+					selected.style.background = 'url(./ship4.png)';*/
+				selected.childNodes[0].style.filter =  '';
 				for(i = 0; i < team[selected.team].length; i++)
 				{
 					if(team[selected.team][i].trap == 6)
@@ -474,7 +517,7 @@ function Game()
 			canStep = false;
 		if((eta.kletka.type == 'castle' || eta.kletka.type == 'supercastle') && eta.kletka.players.length > 0)
 		{
-			for(i = 0; i <= eta.kletka.players.length; i++)
+			for(i = 0; i < eta.kletka.players.length; i++)
 			{
 				if(eta.kletka.players[i].team != selected.team)
 				{
@@ -521,11 +564,11 @@ function Game()
 			canStep = false;
 		if(selected.drug == 'plane') // ход с самолета
 		{
-			if(eta.kletka.water == false && eta.kletka.water == false)
-			{
+			//if(eta.kletka.water == false && eta.kletka.water == false)
+			
 				canStep = true;
 				drug = false;
-			}
+			
 		}
 
 		if(crocodile)
@@ -547,12 +590,16 @@ function Game()
 					selected.drug = 'no'
 					selected.classList.remove('selected');
 					selected = null;
+					earthquake1.style.outline = '';
 					Hod();
 					drug = false;
 					earthquakeU = true;
 				}
 				else
+				{
 					earthquake1 = eta;
+					eta.style.outline = '2px solid white';
+				}
 				return;
 
 			}
@@ -763,7 +810,7 @@ function Game()
 								}
                             }
                             var pustina = eta.kletka.players[i].trap - selected.trap
-                            if (eta.kletka.type != 'pustina' || pustina == 1)
+                            if (eta.kletka.type != 'pustina' || pustina == 0)
                             {
                                 if(eta.kletka.players[i].team != selected.team && (eta.kletka.players[i].skill == 'missionary' || 
 							    selected.skill == 'missionary'))
@@ -834,7 +881,8 @@ function Game()
 									    else // умирает стоящий
 									    {
 									    	eta.kletka.players[i].trap = 0;
-									    	Kill(eta.kletka.players, eta.kletka.players[i]);
+									    	Hit(eta.kletka.players[i]);
+									    	//Kill(eta.kletka.players, eta.kletka.players[i]);
 
 									    }
 									    selected.parentElement.kletka.players = selected.parentElement.kletka.players.filter(p => p!=selected);
@@ -1186,7 +1234,7 @@ function Game()
 				
 			}
 
-			if(eta.kletka.type == 'treasure')
+			/*if(eta.kletka.type == 'treasure')
 			{
 				var treasure = document.createElement('div');
 				eta.appendChild(treasure);
@@ -1194,7 +1242,7 @@ function Game()
 				eta.kletka.gold = eta.kletka.gold + 3;
 				treasure.onclick = Treasure;
 				
-			}
+			}*/
 
 			if(eta.kletka.type == 'box')
 			{
@@ -1252,18 +1300,15 @@ function Game()
 
 			if(eta.kletka.type == 'supercastle') 
 			{
-				
-				for(j = 1; j <=4; j++)
+				var killers = 0;
+				for(i = 0; i < team[hod].length; i++)
 				{
-					var killers = 0;
-					for(i = 0; i < team[j].length; i++)
-					{
-						if(team[j][i].skill == 'no' || team[j][i].skill == 'ben')
-							killers = killers + 1;
-					}
-					if(killers < 3)
-						CreateChelik(eta, selected.team, 'no', selected.ship, team[j]);
+					if(team[hod][i].skill == 'no' || team[hod][i].skill == 'ben')
+						killers = killers + 1;
 				}
+				if(killers < 3)
+					CreateChelik(eta, selected.team, 'no', selected.ship, team[hod]);
+				
 				
 			}
 			if(eta.kletka.water && eta.kletka.ship && eta.team == selected.team)
@@ -1320,7 +1365,13 @@ function Game()
 		opisanie.style.visibility = 'visible';
 		var rect = e.getBoundingClientRect(); 
 		opisanie.style.top = rect.top - 20;
-		opisanie.style.left = rect.left + 70;
+		var nn = document.body.clientWidth - rect.left;
+		if(nn < 400)
+		{
+			opisanie.style.left = rect.left - 280;
+		}
+		else
+			opisanie.style.left = rect.left + 70;
 		if(open)
 		{
 			if(type == 'jungle')
@@ -1472,11 +1523,11 @@ function Game()
 				h1.innerText += "Пушка";
 				h2.innerText += "Выстреливает вас в море в том направлении, в котором стоит.";
 			}
-			else if(type == 'treasure')
+			/*else if(type == 'treasure')
 			{
 				h1.innerText += "Сокровище";
 				h2.innerText += "Один такой слиток стоит целых 3 монет.";
-			}
+			}*/
 		}
 		else
 		{
@@ -1488,8 +1539,8 @@ function Game()
 
 	function Hod()
     {
-		button.classList.add('inactive');
-		button.classList.remove('active');
+		rum[hod].classList.add('inactive');
+		rum[hod].classList.remove('active');
 		
         if (selectedgold)
         {
@@ -1505,16 +1556,25 @@ function Game()
 			
 		arrow = false;
 		drug = false;
-		hod = hod % 4 + 1;
+		for(i = 0; i < teams.length; i++)
+		{
+			if(teams[i] == hod)
+			{
+				hod = teams[(i+1)%teams.length];
+				block[teams[i]].classList.remove('activeb');
+				block[hod].classList.add('activeb');
+				hodd[teams[i]].style.visibility = 'hidden';
+				hodd[hod].style.visibility = 'visible';
+				break;
+			}
+		}
+		/*hod = hod % 4 + 1;
 		var n;
 		if(hod == 1)
 			n = 4
 		else
-			n = hod - 1;
-		block[n].classList.remove('activeb');
-		block[hod].classList.add('activeb');
-		hodd[n].style.visibility = 'hidden';
-		hodd[hod].style.visibility = 'visible';
+			n = hod - 1;*/
+		
 		/*else if(hod == 4)
 		{
 			block3.classList.remove('activeb');
@@ -1523,15 +1583,15 @@ function Game()
 			hod4.style.visibility = 'visible';
 		}*/
 		if(gold[1]+gold[2]+gold[3]+gold[4] == 40 || team[1].length == 0 || team[2].length == 0
-    		|| team[3].length == 0 || team[4].length == 0 || (team[1].length == 1 && team[1][0].trap > 4)
-    		|| (team[2].length == 1 && team[2][0].trap > 4) || (team[3].length == 1 && team[3][0].trap > 4)
-    		|| (team[4].length == 1 && team[4][0].trap > 4))
+    		|| team[3].length == 0 || team[4].length == 0 || (team[1].length == 1 && team[1][0].trap > 5)
+    		|| (team[2].length == 1 && team[2][0].trap > 5) || (team[3].length == 1 && team[3][0].trap > 5)
+    		|| (team[4].length == 1 && team[4][0].trap > 5))
     		GameOver();
 	}
-	function TreasureM(selectedtreasure, selected, eta, suda)
+	/*function TreasureM(selectedtreasure, selected, eta, suda)
 	{
 		
-	}
+	}*/
 
 	function Music(event)
 	{
@@ -1552,6 +1612,7 @@ function Game()
 		{
 			if(!close)
 			{
+				var da = false;
 				if(selectedgold.parentElement.kletka.gold <= 1)
 				{
 					selectedgold.parentElement.kletka.golddiv = null;
@@ -1572,8 +1633,9 @@ function Game()
 							selectedgold.parentElement.removeChild(selectedgold);
 						//selectedgold = null;
 					}
-					/*else
-						selectedgold.parentElement.removeChild(selectedgold);*/
+					else
+						da = true;
+
 				}
 				else
 				{
@@ -1655,6 +1717,8 @@ function Game()
 				selectedgold = null;
 			}
 		}
+		if(da)
+			selectedgold.parentElement.removeChild(selectedgold);
 		if(gold[selected.team] >= 20)
 			GameOver();
 		Information();
@@ -1679,19 +1743,29 @@ function Game()
 
     function Button()
     {
-    	if(button.classList.contains('active'))
+    	if(rum[hod].classList.contains('active'))
     	{
     		selected.trap = 0;
-			button.classList.add('inactive');
-			button.classList.remove('active');
+			rum[hod].classList.add('inactive');
+			rum[hod].classList.remove('active');
 			rom[selected.team] = rom[selected.team] - 1;
 			Information();
+			bottleal.play();
     	}
     }
 
-    function GameOver()
+    function GameOver(h, w)
     {
-    	button.style.background = 'red';
+    	if(h != null)
+    		teams.filter(p => p!=h);
+    	let cmpf = function(a,b)
+		{
+		    return gold[a] > gold[b] ? 1 : (gold[a] < gold[b] ? -1 : 0);
+		};
+    	winners = winners.sort(cmpf);
+		button.style.background = 'white';
+		button.style.background = colors[winners[winners.length]];
+
     }
 
     function Kill(arr, people, pteam)
@@ -1710,6 +1784,11 @@ function Game()
 			Hod();
 			return;
 	    }
+    }
+    function Hit(people)
+    {
+    	people.parentElement.kletka.players.filter(p => p!=people);
+    	people.ship.div.appendChild(people);
     }
 
 	function Fishka(event)
@@ -1744,8 +1823,9 @@ function Game()
 			selected.classList.add('selected');
 			if(selected.parentElement.kletka && selected.parentElement.kletka.type == 'pustina' && rom[selected.team] > 0 && selected.trap > 0)
 			{
-				button.classList.remove('inactive');
-				button.classList.add('active');
+				rum[hod].classList.remove('inactive');
+				rum[hod].classList.add('active');
+				bottlea.play();
 			}
 			
 			/*for(i = 0; i <= 11; i++)
@@ -1770,7 +1850,7 @@ function Game()
 			eto.classList.add('selectedg');
 		}
 	}
-	function Treasure(event)
+	/*function Treasure(event)
 	{
 		eto = event.target;
 		if(eto.parentElement == selected.parentElement)
@@ -1779,7 +1859,7 @@ function Game()
 			selectedtreasure = eto;
 			eto.classList.add('selectedtreasure');
 		}
-	}
+	}*/
 
 	function Information()
 	{
@@ -1917,6 +1997,43 @@ function Game()
 		}
 
 	}
+	function Birds(direction)
+	{
+
+		var size = Math.random() * (100 - 60) + 60;
+		var height =  Math.random() * (150 - 1) + 1;
+		let ndiv = document.createElement('div');
+		ndiv.classList.add('birds');
+		ndiv.style.top =  Math.floor(height);
+		ndiv.style['background-size'] =  Math.floor(size) + '%';
+		var numb = screen.width+200;
+		if(direction ==  1)
+		{
+			ndiv.classList.add('nbirds');
+			var ntime = setTimeout( function() {ndiv.style.transform = "translate(-" + numb + "px)"; }, 100);
+		}
+		else
+		{
+			ndiv.classList.add('obirds');
+			var ntime = setTimeout( function() {ndiv.style.transform = "translate(" + numb + "px) scaleX(-1)"; }, 100);
+		}
+		document.body.appendChild(ndiv);
+		
+		var ntime = setTimeout(function() { document.body.removeChild(ndiv); }, 4100);
+
+	}
+	testxhit = Birds;
+
+	/*function BirdsEnd()
+	{
+		let ndiv = document.createElement('div');
+		ndiv.classList.add('birdsend');
+		document.body.appendChild(ndiv);
+		
+		//var ntime = setTimeout( function() {ndiv.style.transform = "translate(-" +  + "px)"; }, 100);
+		
+	}*/
+
 	function Jakal()
 	{
 		jakal = document.getElementById('jakal');
@@ -1944,6 +2061,8 @@ function Game()
 
 	}
 }
-
+var testxhit;
+var test;
 var game = new Game();
+
 document.addEventListener('DOMContentLoaded',game.Start);

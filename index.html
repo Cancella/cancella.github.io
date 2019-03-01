@@ -8,6 +8,7 @@
     		{
     			background: url(./fon2.jpg);
                 background: #6ab0ba;
+                overflow-x: hidden;
     		}
     		.pole
     		{
@@ -27,6 +28,7 @@
                 -o-transition: .2s ease-in-out;
                 transition: .2s ease-in-out;
                 position: relative;
+                cursor: pointer;
     		}
             .opisanie
             {
@@ -68,25 +70,25 @@
 			}
 			.ship3:hover > .shipik3
 			{
-				filter: drop-shadow(0 0 3px white);
+				filter: drop-shadow(0 0 9px white);
 				/*background: url(./ship31selected.png) no-repeat !important;
 				background-size: contain !important;*/
 			}
 			.ship4:hover > .shipik4
 			{
-				filter: drop-shadow(0 0 3px white);
+				filter: drop-shadow(0 0 9px white);
 				/*background: url(./ship31selected.png) no-repeat !important;
 				background-size: contain !important;*/
 			}
 			.ship4:hover > .shipik4
 			{
-				filter: drop-shadow(0 0 3px white);
+				filter: drop-shadow(0 0 9px white);
 				/*background: url(./ship31selected.png) no-repeat !important;
 				background-size: contain !important;*/
 			}
 			.ship1:hover > .shipik1
 			{
-				filter: drop-shadow(0 0 3px white);
+				filter: drop-shadow(0 0 9px white);
 				/*background: url(./ship31selected.png) no-repeat !important;
 				background-size: contain !important;*/
 			}
@@ -156,6 +158,7 @@
                 -moz-user-select: none;
                 -ms-user-select: none;
                 user-select: none;
+                cursor: pointer;
     		}
     		.team1
     		{
@@ -255,8 +258,9 @@
 
             .jakal
             {
+                pointer-events:none;
                 position: absolute;
-                z-index: 3;
+                z-index: 16;
                 background: url(./jakal2.png) no-repeat;
                 background-size: contain;
                 height: 700px;
@@ -328,6 +332,7 @@
             }
             .hod
             {
+
                 height: 120px;
                 width: 75px;
                 color: #ffffff59;
@@ -337,6 +342,7 @@
                 font-weight: 700;
                 position: fixed;
                 z-index: 10;
+                pointer-events:none;
             }
             .hod1
             {
@@ -424,21 +430,19 @@
             {
                 height: 150px;
                 width: 150px;
-                border-radius: 100px;
-                position: fixed;
-                right: 0;
-                top: 0;
-                left: 0;
-                bottom: 0;
-                margin: auto;
-                margin-right: 30;
+                /*background: #8fc1c2;*/
+                position: absolute;
+               	right: 17%;
+               	top: 0;
                 z-index: 5;
                 
             }
             .active
             {
-            	background: url(./bottle2.gif) 50% 50% no-repeat;
-                background-size: 60%;
+            	/*background: url(./bottle2.gif) 50% 50% no-repeat;
+                background-size: 60%;*/
+                filter: drop-shadow(0 0 5px white);
+                cursor: pointer;
                 /*background: #172729;*/
                 /*color: #ffffff8f;*/
             }
@@ -485,22 +489,22 @@
             .volumed
             {
                 bottom: 15%;
-                right: 2%;
+                right: 15%;
                 position: absolute;
                 z-index: 9;
-                position: fixed;
             }
             .slider
             {
                -webkit-appearance: none;
                 border-radius: 10px;
                 z-index: 9;
-                background: #404040;
+                background: #000000c7;
                 outline: none;
                 -webkit-transition: .2s;
                 transition: opacity .2s;
                 height: 10px;
                 width: 150px;
+                cursor: pointer;
                 
             }
             .slider::-webkit-slider-thumb 
@@ -509,31 +513,180 @@
                 appearance: none;
                 width: 20px;
                 height: 20px;
-                background: url(./circle.png);
+                border-radius: 20px;
+                background: #000000c7;
+                /*background: url(./circle.png);*/
                 background-size: 100% auto;
+            }
+            .slider::-webkit-slider-thumb:hover
+            {
+            	box-shadow: 0 0 2px black;
             }
             .mus
             {
-                bottom: 18%;
-                right: 10%;
+                bottom: 20%;
+                right: 70%;
                 position: absolute;
                 z-index: 15;
-                position: fixed;
                 height: 40px;
                 width: 40px;
                 background: url(./nota.png) no-repeat;
                 background-size: 100%;
+                cursor: pointer;
             }
+            .mus:hover
+            {
+        	    filter: drop-shadow(0 0 1px #000000c7);
+            }
+            .color
+            {
+            	height: 60px;
+            	width: 10px;
+            	position: fixed;
+            	z-index: 10;
+            }
+            .color1
+            {
+            	background: #377933;
+            	/*left: 14.5%;*/
+            	left: 198px;
+            	top: 0;
+            }
+            .color2
+            {
+            	background: black;
+            	left: 198px;
+            	bottom: 0;
+            }
+            .color3
+            {
+            	background: #9d0f04;
+            	right: 210px;
+            	bottom: 0;
+            }
+            .color4
+            {
+            	background: #fad201;
+            	right: 210px;
+            	top: 0;
+            }
+            .giveup
+            {
+            	margin: 0;
+            	position: absolute;
+            	top: 50%;
+            	right: 25%;
+            	width: 120px;
+            	height: 40px;
+            	background: #000000c7;
+            	border-radius: 5px;
+            	color: #a8825b;
+            	font-size: 145%;
+            	font-weight: 700;
+            	text-align: center;
+            	 -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                cursor: pointer;
+                z-index: 3;
+            }
+            .giveup:hover
+            {
+            	box-shadow: 0 0 20px black;
+            }
+            .zv
+            {
+            	bottom: 20%;
+                right: 45%;
+                position: absolute;
+                z-index: 15;
+                height: 40px;
+                width: 40px;
+                background: url(./zv.png) no-repeat;
+                background-size: 100%;
+                cursor: pointer;
+            }
+            .zv:hover
+            {
+        	    filter: drop-shadow(0 0 1px #000000c7);
+            }
+            .container
+            {
+            	height: 400px;
+            	width: 200px;
+            	position: fixed;
+            	bottom: 10%;
+            	right: 0%;
+            }
+            .birds
+            {
+            	position: absolute;
+            	z-index: 6;
+            	height: 95px;
+            	width: 145px;
+            	background: url(./birds1.gif) no-repeat;
+            	right: -145;
+            	transition: transform 4s cubic-bezier(0.4, 0, 1, 1) !important;
+            	filter: drop-shadow(0 0 1.5px black);
+			}
+			.obirds
+			{
+				left: -200 !important;
+				/*-moz-transform: scaleX(-1); 
+				-o-transform: scaleX(-1); 
+				-webkit-transform: scaleX(-1); */
+				transform: scaleX(-1);/*
+				filter: FlipH; 
+				-ms-filter: "FlipH";*/
+			}
+			.birdsend
+			{
+				animation: animX 4s infinite cubic-bezier(0, 4.7, 0.5, 1),
+						   animY 4s infinite cubic-bezier(0, 0.2, 0.5, 1);
+  				position: fixed;
+            	z-index: 6;
+            	height: 95px;
+            	width: 145px;
+            	background: url(./bird.gif) no-repeat;
+            	background-size: contain;
+            	right: 500;
+            	display: none;
+			}
+
+			@keyframes animX {
+
+			   	from {
+			      	left: 80px;
+			   	}
+			   	to {
+			      	left: 350px;
+			   	}
+			}
+
+			@keyframes animY {
+			   from {
+			      top: 390px;
+			   }
+			   to {
+			      top: 60px;
+			   }
+			}
+
 
             
 
 
     	</style>
-
+    	
     	<script src="./shakal.js"></script>
         <!--<audio src="./Pirates.mp3" autoplay="autoplay" loop="loop" preload="auto" id="music" volume="50"></audio>-->
         <audio src="./zvuk1.mp3" autoplay="autoplay" loop="loop" preload="auto" id="music" ></audio>
         <audio src="./zvuk2.mp3" id="zvuk"></audio>
+        <audio src="./bottle.mp3" id="bottlea" ></audio>
+        <audio src="./bottleal.mp3" id="bottleal" ></audio>
 
         <div class="jakal" id="jakal"></div>
         <div class="block block1 activeb" id = "block1">
@@ -543,6 +696,7 @@
             <div class="rom"></div>
             <div class="rome rom1" id="rom1">0</div>
         </div>
+        <div class="color color1"></div>
         <div class="block block2" id = 'block2'>
             <div class="hod hod2" id="hod2"><div class="povernyt">ход</div></div>
             <div class="coin"></div>
@@ -550,6 +704,7 @@
             <div class="rom"></div>
             <div class="rome rom2"  id="rom2">0</div> 
         </div>
+        <div class="color color2"></div>
         <div class="block block3" id = 'block3'>
             <div class="hod hod3" id="hod3"><div class="povernyt">ход</div></div>
             <div class="coin"></div>
@@ -557,6 +712,7 @@
             <div class="rom"></div>
             <div class="rome rom3"  id="rom3">0</div> 
         </div>
+        <div class="color color3"></div>
         <div class="block block4" id = 'block4'>
             <div class="hod hod4" id="hod4"><div class="nepovernyt">ход</div></div>
             <div class="coin"></div>
@@ -564,22 +720,26 @@
             <div class="rom"></div>
             <div class="rome rom4"  id="rom4">0</div> 
         </div>
-        <div class="userum inactive" id="userum">
-            <div class="text">
-            
-            </div>
-        </div>
+        <div class="color color4"></div>
+       
         <div class="userumb"></div>
         <div class="opisanie" id="opisanie">
             <h1></h1>
             <h2></h2>        
         </div>
-        <div class="volumed" id="volume">
-            <input type="range" min="0" max="100" value="50" class="slider" id="myRange">
+        <div class="container">
+        	<div class="userum inactive" id="userum">
+            	<div class="text"></div>
+        	</div>
+	        <div class="volumed" id="volume">
+	            <input type="range" min="0" max="100" value="50" class="slider" id="myRange">
+	        </div>
+	        <div class="mus" id="mus"></div>
+	        <div class="zv" id="zv"></div>
+	        <div class="giveup" id="giveup"><div style="position: relative; top: 10%;">сдаться</div></div>
         </div>
-        <div class="mus" id="mus"></div>
 
-
+    	<div class='birdsend'></div>
 
     </body>
 </html>
