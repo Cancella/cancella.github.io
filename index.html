@@ -644,16 +644,49 @@
 			}
 			.birdsend
 			{
-				animation: animX 4s infinite cubic-bezier(0, 4.7, 0.5, 1),
-						   animY 4s infinite cubic-bezier(0, 0.2, 0.5, 1);
+				top: 50%;
+				left: 50%;
   				position: fixed;
             	z-index: 6;
-            	height: 95px;
-            	width: 145px;
+            	margin-top: -100px;
+            	margin-left: -100px;
+            	height: 200px;
+            	width: 200px;
             	background: url(./bird.gif) no-repeat;
-            	background-size: contain;
+            	/*background-size: contain;*/
             	right: 500;
-            	display: none;
+            	transform: transform 4s cubic-bezier(0.4, 0, 1, 1) !important;
+            	
+			}
+			.bigend
+			{
+				margin-top: -200px;
+            	margin-left: -200px;
+				top: 50%;
+				left: 50%;
+				position: fixed;
+            	z-index: 6;
+            	height: 400px;
+            	width: 400px;
+            	background: url(./bird.gif) no-repeat;
+            	/*background-size: contain;*/
+            	right: 500;
+            	transform: transform 4s cubic-bezier(0.4, 0, 1, 1) !important;
+			}
+			.circle
+			{
+				top: 0;
+				left: 0;
+				position: fixed;
+				z-index: 19;
+				/*top: 50%;
+				left: 50%;*/
+				height: 100%;
+				width: 100%;
+				background: radial-gradient(circle farthest-side at center, black, #00000000);
+				transition: opacity 4s cubic-bezier(0.4, 0, 1, 1) !important;
+				background: black;
+				opacity: 0;
 			}
 
 			@keyframes animX {
@@ -687,6 +720,7 @@
         <audio src="./zvuk2.mp3" id="zvuk"></audio>
         <audio src="./bottle.mp3" id="bottlea" ></audio>
         <audio src="./bottleal.mp3" id="bottleal" ></audio>
+        <audio src="./trees2.mp3" id="trees" ></audio>
 
         <div class="jakal" id="jakal"></div>
         <div class="block block1 activeb" id = "block1">
@@ -739,7 +773,6 @@
 	        <div class="giveup" id="giveup"><div style="position: relative; top: 10%;">сдаться</div></div>
         </div>
 
-    	<div class='birdsend'></div>
 
     </body>
 </html>

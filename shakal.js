@@ -22,6 +22,7 @@ function Game()
 	var bottleal;
 	var birds;
 	var birdst;
+	var trees;
 	var rum = [];
 	var giveup;
 	var colors = [null, 'white', 'black', '#9d0f04','fad201'];
@@ -86,7 +87,7 @@ function Game()
 		};
 		makeTimeout();
 
-
+		trees = document.getElementById('trees');
 		mus = document.getElementById('mus');
 		bottlea = document.getElementById('bottlea');
 		bottleal = document.getElementById('bottleal');
@@ -505,6 +506,7 @@ function Game()
 			{
 				canStep = true;
 				drug = false;
+
 			}
 				
 		}  
@@ -737,6 +739,7 @@ function Game()
 						background = Math.floor(Math.random() * 4 + 1);
 					eta.style.background = "url(./" + eta.kletka.type + background + ".jpg)";
 				}
+				trees.play();
 			}
 
 			if(eta.kletka.type == 'arrow' || (eta.kletka.type == 'plane' && open == false) || (eta.kletka.type == 'beacon' && beaconU > 0) || 
@@ -1756,7 +1759,7 @@ function Game()
 
     function GameOver(h, w)
     {
-    	if(h != null)
+    	/*if(h != null)
     		teams.filter(p => p!=h);
     	let cmpf = function(a,b)
 		{
@@ -1764,9 +1767,29 @@ function Game()
 		};
     	winners = winners.sort(cmpf);
 		button.style.background = 'white';
-		button.style.background = colors[winners[winners.length]];
+		button.style.background = colors[winners[winners.length]];*/
+		let ni = 0;
+		let circle = document.createElement('div');
+		circle.classList.add('circle');
+		//circle.style.top = 0;
+		//circle.style.left = document.body.clientWidth/2;
+		/*circle.style['margin-top'] = -document.body.clientHeight/2 +'px';
+		circle.style['margin-left'] = -document.body.clientHeight/2 +'px';
+		circle.style.height = document.body.clientHeight;
+		circle.style.width = document.body.clientHeight;*/
+		document.body.appendChild(circle);
+		setTimeout(function(){ circle.style.opacity = 1}, 5000);
+		for(i = 1; i < 140;  i++)
+		{
 
-    }
+			setTimeout(function(){BirdsEnd(ni++)}, Math.random() * 7000);
+		}
+	}
+			
+		
+		
+
+    
 
     function Kill(arr, people, pteam)
     {
@@ -2022,17 +2045,57 @@ function Game()
 		var ntime = setTimeout(function() { document.body.removeChild(ndiv); }, 4100);
 
 	}
+
 	testxhit = Birds;
 
-	/*function BirdsEnd()
+	function BirdsEnd(b)
 	{
 		let ndiv = document.createElement('div');
-		ndiv.classList.add('birdsend');
+		if(b < 90)
+			ndiv.classList.add('birdsend');
+		else
+			ndiv.classList.add('bigend');
+		let top = document.body.clientHeight/2;
+		let left = document.body.clientWidth/2;
 		document.body.appendChild(ndiv);
+		let alpha = 2 * Math.PI;
+		if(b < 90)
+			size = Math.random() * (100 - 10) + 10;
+		else
+			size = 100;
+		ndiv.style['background-size'] = size + '%';
 		
-		//var ntime = setTimeout( function() {ndiv.style.transform = "translate(-" +  + "px)"; }, 100);
+		let r = 800;
+		let radius = document.body.clientHeight;
+		let currentt = Date.now();
+		let time;
+		let angle;
+		let rand = Math.random() * 380;
+		let r2 = Math.random() * (1.5 - 0.5)+0.5;
+		let r1 = Math.random() *  4000 + 1000;
+
+
+		function Move(time, angle)
+		{
+			ndiv.style.left = left + radius * Math.cos(/*alpha */ (angle + rand)/360*alpha);
+			ndiv.style.top = top + radius * Math.sin(/*alpha */ (angle  + rand)/360*alpha);
+			ndiv.style.transform = 'rotate('+ (angle + rand) +'deg)';
+		}
+
+		setTimeout(function(){ndiv.style.background = 'url(./bird.png) no-repeat';ndiv.style['background-size'] = size + '%'; clearTimeout(timer)}, r1);
 		
-	}*/
+		let timer = setInterval(function()
+		{
+			time = (Date.now() - currentt)* r2; 
+			angle = -time/5.5;
+			if(radius > 0)
+				radius = radius - 0.4;
+			//var left = Math.random * (document.body.clientWidth);
+			Move(time, angle);
+		},1)
+	}
+
+
 
 	function Jakal()
 	{
