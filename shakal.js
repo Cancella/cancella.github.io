@@ -23,6 +23,7 @@ function Game()
 	var birds;
 	var birdst;
 	var trees;
+	var birdsa;
 	var rum = [];
 	var giveup;
 	var colors = [null, 'white', 'black', '#9d0f04','fad201'];
@@ -92,6 +93,7 @@ function Game()
 		bottlea = document.getElementById('bottlea');
 		bottleal = document.getElementById('bottleal');
 		music = document.getElementById('music');
+		birdsa = document.getElementById('birdsa');
 		body = document.getElementsByTagName('body');
 		body[0].onclick = Music;
 		var bl = document.getElementsByClassName('block');
@@ -1770,20 +1772,19 @@ function Game()
 		button.style.background = colors[winners[winners.length]];*/
 		let ni = 0;
 		let circle = document.createElement('div');
+		let circlei = document.createElement('div');
 		circle.classList.add('circle');
-		//circle.style.top = 0;
-		//circle.style.left = document.body.clientWidth/2;
-		/*circle.style['margin-top'] = -document.body.clientHeight/2 +'px';
-		circle.style['margin-left'] = -document.body.clientHeight/2 +'px';
-		circle.style.height = document.body.clientHeight;
-		circle.style.width = document.body.clientHeight;*/
+		circlei.classList.add('circlei');
+		circlei.style['margin-top'] = -document.body.clientHeight/8;
+		circlei.style['margin-left'] = -document.body.clientWidth/8;
+		setTimeout(function(){birdsa.play()}, 500);
 		document.body.appendChild(circle);
+		circle.appendChild(circlei);
 		setTimeout(function(){ circle.style.opacity = 1}, 5000);
+		setTimeout(function(){ circlei.innerText += "ВЫ ПРОИГРАЛИ"}, 5500);
 		for(i = 1; i < 140;  i++)
-		{
-
 			setTimeout(function(){BirdsEnd(ni++)}, Math.random() * 7000);
-		}
+		
 	}
 			
 		
