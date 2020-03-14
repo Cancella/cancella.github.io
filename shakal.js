@@ -304,7 +304,7 @@ function Game()
 		
 	}
 
-	//usic.play();
+	//music.play();
 
 	var dontFlip = false;
 	var numcave = 1;
@@ -1775,8 +1775,8 @@ function Game()
 		let circlei = document.createElement('div');
 		circle.classList.add('circle');
 		circlei.classList.add('circlei');
-		circlei.style['margin-top'] = -document.body.clientHeight/8;
-		circlei.style['margin-left'] = -document.body.clientWidth/8;
+		//circlei.style['margin-top'] = -document.body.clientHeight/8;
+		//circlei.style['margin-left'] = -document.body.clientWidth/8;
 		setTimeout(function(){birdsa.play()}, 500);
 		document.body.appendChild(circle);
 		circle.appendChild(circlei);
@@ -2058,7 +2058,7 @@ function Game()
 			ndiv.classList.add('bigend');
 		let top = document.body.clientHeight/2;
 		let left = document.body.clientWidth/2;
-		document.body.appendChild(ndiv);
+		
 		let alpha = 2 * Math.PI;
 		if(b < 90)
 			size = Math.random() * (100 - 10) + 10;
@@ -2074,7 +2074,7 @@ function Game()
 		let rand = Math.random() * 380;
 		let r2 = Math.random() * (1.5 - 0.5)+0.5;
 		let r1 = Math.random() *  4000 + 1000;
-
+		document.body.appendChild(ndiv);
 
 		function Move(time, angle)
 		{

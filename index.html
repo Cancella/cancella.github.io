@@ -259,17 +259,20 @@
             .jakal
             {
                 pointer-events:none;
-                position: absolute;
+                position: fixed;
+                top: 70%;
+                left: 50%;
+                margin-top: -350px;
+                margin-left: -350px;
                 z-index: 16;
                 background: url(./jakal2.png) no-repeat;
                 background-size: contain;
                 height: 700px;
-                width: 1000px;
-                margin-left: 300px;
-                margin-top: -150px;
+                width: 700px;
                 display: none;
                 opacity: 100%;
                 transition: opacity .1s ease-in-out; 
+                filter: drop-shadow(0 0 5px black);
             }
             .block
             {
@@ -693,13 +696,15 @@
 			{
 				position: fixed;
 				top: 50%;
-				left: 50%;
+				left: 0%;
+				margin-top: -20px;
+				margin-left: 0;
 				color: white;
 				font-size: 40;
 				text-align: center;
 				z-index: 20;
-				height: 25%;
-				width: 25%;
+				height: 40px;
+				width: 100%;
 				/*background: red;*/
 			}
 
@@ -729,7 +734,7 @@
     	</style>
     	
     	<script src="./shakal.js"></script>
-        <!--<audio src="./Pirates.mp3" autoplay="autoplay" loop="loop" preload="auto" id="music" volume="50"></audio>-->
+        <audio src="./Pirates.mp3" autoplay="autoplay" loop="loop" preload="auto" id="music" volume="50"></audio>
         <audio src="./zvuk1.mp3" autoplay="autoplay" loop="loop" preload="auto" id="music" ></audio>
         <audio src="./zvuk2.mp3" id="zvuk"></audio>
         <audio src="./bottle.mp3" id="bottlea" ></audio>
