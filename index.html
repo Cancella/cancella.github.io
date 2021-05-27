@@ -1,799 +1,234 @@
 <html>
-    <head>
-        <meta charset="UTF-8">
-    </head>
-    <body>
-    	<style>
-    		body
-    		{
-    			background: url(./fon2.jpg);
-                background: #6ab0ba;
-                overflow-x: hidden;
-    		}
-    		.pole
-    		{
-    			width: 950px;
-    			margin-right: auto;
-    			margin-left: auto;
-    		}
-    		.card 
-    		{
-    			height: 70px;
-    			width: 70px;
-    			margin: 1px;
-    			float: left;
-                z-index: 2;
-                -webkit-transition: .2s ease-in-out;
-                -moz-transition: .2s ease-in-out;
-                -o-transition: .2s ease-in-out;
-                transition: .2s ease-in-out;
-                position: relative;
-                cursor: pointer;
-    		}
-            .opisanie
-            {
-                pointer-events:none;
-                width: 230px;
-                z-index: 16;
-                background: #e2cdacd6;
-                position: absolute;
-                visibility: hidden;
-                transition: .2s ease-in-out ;
-                border-radius: 5px;
-                border: 1px solid #ab552b5c;
-                font-style: impact;
-                color: #000000ab; 
-                text-align: center;
-                padding-left: 20px;
-                padding-right: 20px;
-                word-wrap: break-word;
-
-            }
-            @keyframes example 
-            { 
-				0% {transform: rotate(15deg)} 
-				50% {transform: rotate(-15deg)} 
-				100% {transform: rotate(15deg)} 
+	<head>
+		<link href="./fontawesome-free-5.15.3-web/css/all.min.css" rel="stylesheet">
+		<style>
+			body {
+				margin: 0;
+				font-family: century gothic;
+				font-size: 15pt;
 			}
-			.shipik
-			{
-				pointer-events:none;
-				height: 100%; 
+			#top {
+				margin: 0;
 				width: 100%;
-				position: absolute; 
-				background: no-repeat; 
-				background-size: contain !important; 
-				animation-name: example; 
-				animation-duration: 6s; 
-				animation-timing-function: ease-in-out; 
-				animation-iteration-count: infinite;
+				height: 60px;
+				box-shadow: #c2c2c2 0px 3px 8px 0px;
+				background: #fff1e8;
 			}
-			.ship3:hover > .shipik3
-			{
-				filter: drop-shadow(0 0 9px white);
-				/*background: url(./ship31selected.png) no-repeat !important;
-				background-size: contain !important;*/
+			#menu {
+				width: fit-content;
+				margin: 0 auto;
+				height: 60px;
 			}
-			.ship4:hover > .shipik4
-			{
-				filter: drop-shadow(0 0 9px white);
-				/*background: url(./ship31selected.png) no-repeat !important;
-				background-size: contain !important;*/
+			#menu > .item {
+				float: left;
+				padding: 20px;
+				height: 20px;
+				cursor: pointer;
 			}
-			.ship4:hover > .shipik4
-			{
-				filter: drop-shadow(0 0 9px white);
-				/*background: url(./ship31selected.png) no-repeat !important;
-				background-size: contain !important;*/
-			}
-			.ship1:hover > .shipik1
-			{
-				filter: drop-shadow(0 0 9px white);
-				/*background: url(./ship31selected.png) no-repeat !important;
-				background-size: contain !important;*/
-			}
-            h1
-            {
-                margin-top: 15px;
-                font-size: 50;
-                font-weight: bolder; 
-            }
-            h2
-            {
-                margin-top: -15px;
-                margin-bottom: 35px;
-            }
-            
 
-    		.card:hover
-    		{
-				outline: 1px solid white; 
-                /*outline-offset: 5px;*/
-                z-index: 5; 
-                box-shadow: 0 0 20px white;
-    		}
-           
-    		 .sea 
-    		{
-    			background: url(./sea5.png);
-    			background-size: contain !important; 
-    		}
-            .sea:hover
-            {
-                outline: 0 solid !important;
-                box-shadow: 0 0 !important;
-            }
+			.drop-menu .drop-menu-item {
+				padding-top: 10px;
+				height: 35px;
+				cursor: pointer;
+			}
 
-    		 .close
-    		{
-    			background: url(./forest4.png); 
-                background-size: auto;
-                background-size: ;
-    		}
-            .open
-            {
-                background-size: contain !important;
-            }
-    		.ship
-    		{
-    			background: url(./ship1.png);
-    			background-size: contain !important;
-    		}
-    		.people
-    		{
-    			position: relative;
-    			border-radius: 15px; 
-    			height: 19px;
-    			width: 19px;
-    			float: left;
-    			margin-left: 1px;
-                color: white;
-                text-shadow: #000000 0px 0px 9px;
-                text-align: center;
-                font-size: 17;
-                box-shadow: #0000006e 0px 0px 9px;
-                -webkit-touch-callout: none;
-                -webkit-user-select: none;
-                -khtml-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-                cursor: pointer;
-    		}
-    		.team1
-    		{
+			.item:hover {
+				background: #fcf9f7;
+
+			}
+
+			#menu .drop-menu {
+				display: none;
+			    top: 60px;
+    			position: absolute;
     			background: white;
-                border: 1px solid white;
-    		}
-    		.team2
-    		{
-    			background: black;
-                border: 1px solid black;
-    		}
-    		.team3
-    		{
-    			background: #9d0f04;
-                border: 1px solid #9d0f04;
-    		}
-    		.team4
-    		{
-    			background: #fad201;
-                border: 1px solid #fad201;
-    		}
-    		.people:hover
-    		{
-                border: 1px solid white;
-    			box-shadow: 0 0 10px white;
-    		}
-    		.selected
-    		{
-    			border: 2px solid white !important;
-                box-shadow: 0 0 20px white !important;
-    		}
-
-            /*.ship1:hover
-            {
-                background: url(./ship1selected.png) !important;
-                background-size: contain !important;
-                outline: none !important;
-            }
-            .ship2:hover
-            {
-                background: url(./ship2selected.png) !important;
-                background-size: contain !important;
-                outline: none !important;
-            }
-            .shipik3:hover
-            {
-                background: url(./ship31selected.png) no-repeat !important;
-                background-size: contain !important;
-                outline: none !important;
-            }
-            .ship4:hover
-            {
-                background: url(./ship4selected.png) !important;
-                background-size: contain !important;
-                outline: none !important;
-            }*/
-
-            .gold
-            {
-                height: 30px;
-                width: 30px;
-                border-radius: 25px;
-                background: url(./gold1.png) no-repeat;
-                background-size: contain;
-                text-align: center; 
-                position: absolute;
-                top: 53%;
-                line-height: 30px;
-                font-weight: bolder; 
-                color: #7d3b1b;  
-                -webkit-touch-callout: none;
-                -webkit-user-select: none;
-                -khtml-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;     
-            }
-            .trasure
-            {
-                height: 50px;
-                width: 50px;
-                position: absolute;
-                bottom: 0;
-                right: 0;
-                background: url(./trasure.png);
-            }
-            .gold:hover
-            {
-                box-shadow: 0 0 20px white;
-                border: 2px solid white;
-            }
-            .selectedg
-            {
-                box-shadow: 0 0 20px white;
-                border: 2px solid white;
-            }
-
-            .jakal
-            {
-                pointer-events:none;
-                position: fixed;
-                top: 70%;
-                left: 50%;
-                margin-top: -350px;
-                margin-left: -350px;
-                z-index: 16;
-                background: url(./jakal2.png) no-repeat;
-                background-size: contain;
-                height: 700px;
-                width: 700px;
-                display: none;
-                opacity: 100%;
-                transition: opacity .1s ease-in-out; 
-                filter: drop-shadow(0 0 5px black);
-            }
-            .block
-            {
-                background: #000000c7;
-                /*background: #522d0963;*/
-                position: fixed;
-                z-index: 7;
-                height: 60px;
-                width: 198px;
-                -webkit-touch-callout: none;
-                -webkit-user-select: none;
-                -khtml-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-
-            }
-            .block3
-            {
-                width: 210px;
-                right: 0;
-            }
-            .block2,
-            .block3
-            {
-                bottom: 0;
-            }
-            .block2
-            {
-                left: 0;
-            }
-            .block1
-            {
-                box-shadow: 0px 8px 20px -5px #00000091;
-                left: 0;
-                top: 0;
-            }
-            .block4
-            {
-                right: 0;
-                top: 0;
-                width: 210px;
-                box-shadow: 0px 8px 20px -5px #00000091;
-            }
-            .pole
-            {
-                margin-top: -7px;
-            }
-            .friday
-            {
-                background: #472500;
-            }
-            .ben
-            {
-                background: green;
-            }
-            .missionary
-            {
-                background: darkblue;
-            }
-            .hod
-            {
-
-                height: 120px;
-                width: 75px;
-                color: #ffffff59;
-                background: url(./hod1.png) no-repeat;
-                text-align: center;
-                font-size: 40;
-                font-weight: 700;
-                position: fixed;
-                z-index: 10;
-                pointer-events:none;
-            }
-            .hod1
-            {
-                left: 65;
-                top: 60;
-                visibility: hidden;
-                background: ;
-            }
-            .hod2
-            {
-                left: 65;
-                bottom: 60;
-                /*width: 198px;*/
-                visibility: hidden;
-                transform: rotate(180deg);
-            }
-            .hod3
-            {
-                right: 65;
-                bottom: 60;
-                /*width: 210px;*/
-                visibility: hidden;
-                transform: rotate(180deg);
-            }
-            .hod4
-            {
-                right: 65;
-                top: 60;
-                /*width: 210px;*/
-                visibility: hidden;
-            }
-            .coin
-            {
-                height: 50px;
-                width: 50px;
-                background: url(./golden1.png) no-repeat;
-                background-size: contain; 
-                position: absolute;
-                z-index: 5;
-                top: 7px;
-                left: 17px;
-            }
-            .rom
-            {
-                height: 45px;
-                width: 45px;
-                background: url(./rum2.png) no-repeat;
-                background-size: contain; 
-                position: absolute;
-                z-index: 5;
-                top: 2px;
-                left: 110px;
-            }
-            .rome
-            {
-                position: absolute;
-                z-index: 5;
-                top: 12px;
-                left: 145px;
-                color: #a8825b;
-                font-size: 25;
-                -webkit-touch-callout: none;
-                -webkit-user-select: none;
-                -khtml-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-            }
-            .coinn
-            {
-                position: absolute;
-                z-index: 5;
-                top: 12px;
-                left: 70px;
-                color: #a8825b;
-                font-size: 25;
-                -webkit-touch-callout: none;
-                -webkit-user-select: none;
-                -khtml-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-            }
-            .userum
-            {
-                height: 150px;
-                width: 150px;
-                /*background: #8fc1c2;*/
-                position: absolute;
-               	right: 17%;
-               	top: 0;
-                z-index: 5;
-                
-            }
-            .active
-            {
-            	/*background: url(./bottle2.gif) 50% 50% no-repeat;
-                background-size: 60%;*/
-                filter: drop-shadow(0 0 5px white);
-                cursor: pointer;
-                /*background: #172729;*/
-                /*color: #ffffff8f;*/
-            }
-            .inactive
-            {
-                /*background: url(./bottle2.gif) 50% 50% no-repeat;
-                background-size: 60%;
-                background: #52473b63;
-                color: #ffffff40;*/
-            }
-            .active:hover
-            { 
-                /*box-shadow: 0 0 20px #292525;*/
-            }
-            .text
-            {
-                position: relative;
-                top: 30%;
-                text-align: center;  
-                font-size: 40;
-                font-weight: 700;
-                -webkit-touch-callout: none;
-                -webkit-user-select: none;
-                -khtml-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-            }
-           /* .activeb
-            {
-                box-shadow: 0 0 20px black;
-            }*/
-            .povernyt
-            {
-                position: relative;
-                bottom: -20;
-                transform: rotate(180deg);
-            }
-            .nepovernyt
-            {
-                position: relative;
-                top: 10;
-            }
-            .volumed
-            {
-                bottom: 15%;
-                right: 15%;
-                position: absolute;
-                z-index: 9;
-            }
-            .slider
-            {
-               -webkit-appearance: none;
-                border-radius: 10px;
-                z-index: 9;
-                background: #000000c7;
-                outline: none;
-                -webkit-transition: .2s;
-                transition: opacity .2s;
-                height: 10px;
-                width: 150px;
-                cursor: pointer;
-                
-            }
-            .slider::-webkit-slider-thumb 
-            {
-                -webkit-appearance: none;
-                appearance: none;
-                width: 20px;
-                height: 20px;
-                border-radius: 20px;
-                background: #000000c7;
-                /*background: url(./circle.png);*/
-                background-size: 100% auto;
-            }
-            .slider::-webkit-slider-thumb:hover
-            {
-            	box-shadow: 0 0 2px black;
-            }
-            .mus
-            {
-                bottom: 20%;
-                right: 70%;
-                position: absolute;
-                z-index: 15;
-                height: 40px;
-                width: 40px;
-                background: url(./nota.png) no-repeat;
-                background-size: 100%;
-                cursor: pointer;
-            }
-            .mus:hover
-            {
-        	    filter: drop-shadow(0 0 1px #000000c7);
-            }
-            .color
-            {
-            	height: 60px;
-            	width: 10px;
-            	position: fixed;
-            	z-index: 10;
-            }
-            .color1
-            {
-            	background: #377933;
-            	/*left: 14.5%;*/
-            	left: 198px;
-            	top: 0;
-            }
-            .color2
-            {
-            	background: black;
-            	left: 198px;
-            	bottom: 0;
-            }
-            .color3
-            {
-            	background: #9d0f04;
-            	right: 210px;
-            	bottom: 0;
-            }
-            .color4
-            {
-            	background: #fad201;
-            	right: 210px;
-            	top: 0;
-            }
-            .giveup
-            {
-            	margin: 0;
-            	position: absolute;
-            	top: 50%;
-            	right: 25%;
-            	width: 120px;
-            	height: 40px;
-            	background: #000000c7;
-            	border-radius: 5px;
-            	color: #a8825b;
-            	font-size: 145%;
-            	font-weight: 700;
-            	text-align: center;
-            	 -webkit-touch-callout: none;
-                -webkit-user-select: none;
-                -khtml-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-                cursor: pointer;
-                z-index: 3;
-            }
-            .giveup:hover
-            {
-            	box-shadow: 0 0 20px black;
-            }
-            .zv
-            {
-            	bottom: 20%;
-                right: 45%;
-                position: absolute;
-                z-index: 15;
-                height: 40px;
-                width: 40px;
-                background: url(./zv.png) no-repeat;
-                background-size: 100%;
-                cursor: pointer;
-            }
-            .zv:hover
-            {
-        	    filter: drop-shadow(0 0 1px #000000c7);
-            }
-            .container
-            {
-            	height: 400px;
-            	width: 200px;
-            	position: fixed;
-            	bottom: 10%;
-            	right: 0%;
-            }
-            .birds
-            {
-            	position: absolute;
-            	z-index: 6;
-            	height: 95px;
-            	width: 145px;
-            	background: url(./birds1.gif) no-repeat;
-            	right: -145;
-            	transition: transform 4s cubic-bezier(0.4, 0, 1, 1) !important;
-            	filter: drop-shadow(0 0 1.5px black);
+    			box-shadow: #c2c2c2 0px 3px 8px 0px;
+    			padding: 20px;
+    			padding-right: 30px;
+    			padding-left: 30px;
+    			background: #fcf9f7;
+    			margin-left: -20px;
 			}
-			.obirds
-			{
-				left: -200 !important;
-				/*-moz-transform: scaleX(-1); 
-				-o-transform: scaleX(-1); 
-				-webkit-transform: scaleX(-1); */
-				transform: scaleX(-1);/*
-				filter: FlipH; 
-				-ms-filter: "FlipH";*/
+
+			#menu > .item:hover > .drop-menu {
+				display: block;
 			}
-			.birdsend
-			{
-				top: 50%;
-				left: 50%;
-  				position: fixed;
-            	z-index: 6;
-            	margin-top: -100px;
-            	margin-left: -100px;
-            	height: 200px;
-            	width: 200px;
-            	background: url(./bird.gif) no-repeat;
-            	/*background-size: contain;*/
-            	right: 500;
-            	transform: transform 4s cubic-bezier(0.4, 0, 1, 1) !important;
-            	
+
+			.page {
+				margin-top: 120px;
 			}
-			.bigend
-			{
-				margin-top: -200px;
-            	margin-left: -200px;
-				top: 50%;
-				left: 50%;
-				position: fixed;
-            	z-index: 6;
-            	height: 400px;
-            	width: 400px;
-            	background: url(./bird.gif) no-repeat;
-            	/*background-size: contain;*/
-            	right: 500;
-            	transform: transform 4s cubic-bezier(0.4, 0, 1, 1) !important;
+
+			.middle {
+				width: 1200px;
+				margin: 0 auto;
+				height: auto;
 			}
-			.circle
+
+	
+
+			#photo
 			{
-				top: 0;
-				left: 0;
-				position: fixed;
-				z-index: 19;
-				/*top: 50%;
-				left: 50%;*/
-				height: 100%;
-				width: 100%;
-				background: radial-gradient(circle farthest-side at center, black, #00000000);
-				transition: opacity 4s cubic-bezier(0.4, 0, 1, 1) !important;
-				background: black;
-				opacity: 0;
-				
+				height: auto;
+				width: 300px;
+				display: inline-block;
+				vertical-align: top;
 			}
-			.circlei
+			.avatar
 			{
-				position: fixed;
-				top: 50%;
-				left: 0%;
-				margin-top: -20px;
-				margin-left: 0;
-				color: white;
-				font-size: 40;
-				text-align: center;
-				z-index: 20;
+			    height: 300px;
+			    width: 300px;
+			    background: url(https://i.imgur.com/CdmTO9q.jpg) no-repeat;
+			    background-size: contain;
+			    border-radius: 50%;
+			    transition: border-radius 0.5s;
+			}
+			.avatar:hover
+			{
+				border-radius: 40%;
+				cursor: pointer;
+			}
+			#name
+			{
 				height: 40px;
 				width: 100%;
-				/*background: red;*/
+    			font-size: 20pt;
+    			text-align: center;
+    			margin-top: 15px;
+			}
+			#contacts
+			{
+				height: 40px;
+				width: 100%;
+    			font-size: 20pt;
+    			text-align: center;
+    			margin-top: 5px;
+
+			}
+			#contacts:hover > .drop 
+			{
+				display: block;
+			}
+			#contacts:hover
+			{
+				background: #fff1e8; 
+			}
+			.drop
+			{
+				display: none;
+				background: #fff1e8; 
+				padding: 10px;
+				font-size: 15pt;
+			}
+			#arrow
+			{
+				background: url(./arrow.svg) no-repeat;
+			    height: 15;
+			    width: 15;
+			    background-size: contain;
+			    display: inline-block;
+			}
+			.cont
+			{
+				padding: 5px;
+			}
+			a
+			{
+				color: black;
+			}
+			#info
+			{
+				width: 700px;
+				height: auto;
+				margin-left: 150px;
+				display: inline-block;
+				vertical-align: top;
+			}
+			h1
+			{
+				font-size: 25pt;
+				font-weight: normal;
+			}
+			.separator
+			{
+				background: url(./divider.png) no-repeat;
+				background-size: contain;
+				mix-blend-mode: multiply;
+				width: 700px;
+				height: 50px;
+				margin: 100px auto 0 auto;
+			}
+			.news
+			{
+				width: fit-content;
+				margin: 0 auto;
+
+			}
+			.news1
+			{
+				display: flex;
+				flex-direction: row;
+				justify-content: space-around;
+				align-items: center;
+				align-content: center;
 			}
 
-			@keyframes animX {
+		
 
-			   	from {
-			      	left: 80px;
-			   	}
-			   	to {
-			      	left: 350px;
-			   	}
-			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="top">
+		</div>
+		<div class = "page">
+			<div class = "middle">
+				<div class="block">
+					<div id = "photo">
+						<div class = "avatar"></div>
+						<div id = "name">Редозубова Юлия</div>
+						<div id = "contacts" class = "drop-menu">Связаться  <div id = "arrow"></div>
+							<div class = "drop">
+								<div class = "cont"><i class="fab fa-telegram-plane"></i> <a href="https://t.me/omeiensis" target="_blank">Telegram</a> </div>
+								<div class = "cont"><i class="fab fa-vk"></i> <a href="https://vk.com/way81" target="_blank">Вконтакте</a></div>
+								<div class = "cont"><i class="fab fa-discord"></i> Discord</div>
+							</div>
+						</div>
+					</div>
+					<div id = "info">
+						<h1>ДОБРО ПОЖАЛОВАТЬ</h1>
+						<div сlass = "text">Я Юлия из атыварывлоа ыарыволарылыв аыоларыоллрыв лоар лы очень много слов. Рорплв арплврлп вролпрволц длвыоа ывлдаодцу лдыоау лдцлдоа цуолдцу цулуоцд оуцлд ц <br><br> Пролварполвло волпрволп у куоролук укололу!</div>
+					</div>
+				</div>
 
-			@keyframes animY {
-			   from {
-			      top: 390px;
-			   }
-			   to {
-			      top: 60px;
-			   }
-			}
+				
+				<div class = "separator"></div>
+				<div class = "news">
+					<h1 style="text-align: center;">НОВОСТИ</h1>
+					<div class="news1" >
+						<img src="https://i.imgur.com/PDNnhc2.jpg" style="height:100px; padding: 40px;">
+						<div style="width:400px">
+							20.05.21<br>
+							Добавлен <a href="https://i.imgur.com/PDNnhc2.jpg">комикс</a><br>
+						</div>
+					</div>
+					<div class="news1" >
+						<img src="https://expandabrand.com.au/wp-content/uploads/2014/04/RGB-1.jpg" style="height:100px; padding: 40px;">
+						<div style="width:400px">
+							05.05.21<br>
+							Доступен новый <a href="https://forms.gle/4VCM2NKTXe7TGAwZ7">тест</a>!
+						</div>
+					</div>
+					
+				</div>
+				
+				<iframe style="margin: auto; display: block;" width="560" height="315" src="https://www.youtube.com/embed/1lq3yLxoPiA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</div>
+		</div>
 
+		</div>
+		<script type="text/javascript" src="./loader.js"></script>
+		<script>
 
-            
-
-
-    	</style>
-    	
-    	<script src="./shakal.js"></script>
-        <audio src="./Pirates.mp3" autoplay="autoplay" loop="loop" preload="auto" id="music" volume="50"></audio>
-        <audio src="./zvuk1.mp3" autoplay="autoplay" loop="loop" preload="auto" id="music" ></audio>
-        <audio src="./zvuk2.mp3" id="zvuk"></audio>
-        <audio src="./bottle.mp3" id="bottlea" ></audio>
-        <audio src="./bottleal.mp3" id="bottleal" ></audio>
-        <audio src="./trees2.mp3" id="trees" ></audio>
-        <audio src="./birds.mp3" id="birdsa" ></audio>
-
-        <div class="jakal" id="jakal"></div>
-        <div class="block block1 activeb" id = "block1">
-            <div class="hod hod1" id="hod1"><div class="nepovernyt">ход</div></div> 
-            <div class="coin"></div>
-            <div class="coinn coin1" id="coin1">0</div>
-            <div class="rom"></div>
-            <div class="rome rom1" id="rom1">0</div>
-        </div>
-        <div class="color color1"></div>
-        <div class="block block2" id = 'block2'>
-            <div class="hod hod2" id="hod2"><div class="povernyt">ход</div></div>
-            <div class="coin"></div>
-            <div class="coinn coin2" id="coin2">0</div>
-            <div class="rom"></div>
-            <div class="rome rom2"  id="rom2">0</div> 
-        </div>
-        <div class="color color2"></div>
-        <div class="block block3" id = 'block3'>
-            <div class="hod hod3" id="hod3"><div class="povernyt">ход</div></div>
-            <div class="coin"></div>
-            <div class="coinn coin3" id="coin3">0</div>
-            <div class="rom"></div>
-            <div class="rome rom3"  id="rom3">0</div> 
-        </div>
-        <div class="color color3"></div>
-        <div class="block block4" id = 'block4'>
-            <div class="hod hod4" id="hod4"><div class="nepovernyt">ход</div></div>
-            <div class="coin"></div>
-            <div class="coinn coin4" id="coin4">0</div>
-            <div class="rom"></div>
-            <div class="rome rom4"  id="rom4">0</div> 
-        </div>
-        <div class="color color4"></div>
-       
-        <div class="userumb"></div>
-        <div class="opisanie" id="opisanie">
-            <h1></h1>
-            <h2></h2>        
-        </div>
-        <div class="container">
-        	<div class="userum inactive" id="userum">
-            	<div class="text"></div>
-        	</div>
-	        <div class="volumed" id="volume">
-	            <input type="range" min="0" max="100" value="50" class="slider" id="myRange">
-	        </div>
-	        <div class="mus" id="mus"></div>
-	        <div class="zv" id="zv"></div>
-	        <div class="giveup" id="giveup"><div style="position: relative; top: 10%;">сдаться</div></div>
-        </div>
-
-
-    </body>
+		</script>
+	</body>
 </html>
-

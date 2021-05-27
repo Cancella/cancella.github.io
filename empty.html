@@ -1,0 +1,189 @@
+<html>
+	<head>
+		<link href="./fontawesome-free-5.15.3-web/css/all.min.css" rel="stylesheet">
+		<style>
+			body {
+				margin: 0;
+				font-family: century gothic;
+				font-size: 15pt;
+			}
+			#top {
+				margin: 0;
+				width: 100%;
+				height: 60px;
+				box-shadow: #c2c2c2 0px 3px 8px 0px;
+				background: #fff1e8;
+			}
+			#menu {
+				width: fit-content;
+				margin: 0 auto;
+				height: 60px;
+			}
+			#menu > .item {
+				float: left;
+				padding: 20px;
+				height: 20px;
+				cursor: pointer;
+			}
+
+			.drop-menu .drop-menu-item {
+				padding-top: 10px;
+				height: 35px;
+				cursor: pointer;
+			}
+
+			.item:hover {
+				background: #fcf9f7;
+
+			}
+
+			#menu .drop-menu {
+				display: none;
+			    top: 60px;
+    			position: absolute;
+    			background: white;
+    			box-shadow: #c2c2c2 0px 3px 8px 0px;
+    			padding: 20px;
+    			padding-right: 30px;
+    			padding-left: 30px;
+    			background: #fcf9f7;
+    			margin-left: -20px;
+			}
+
+			#menu > .item:hover > .drop-menu {
+				display: block;
+			}
+
+			.page {
+				margin-top: 120px;
+			}
+
+			.middle {
+				width: 1200px;
+				margin: 0 auto;
+				height: auto;
+			}
+
+			.block {
+				
+			}
+
+			#photo
+			{
+				height: auto;
+				width: 300px;
+				display: inline-block;
+				vertical-align: top;
+			}
+			.avatar
+			{
+			    height: 300px;
+			    width: 300px;
+			    background: url(https://i.imgur.com/CdmTO9q.jpg) no-repeat;
+			    background-size: contain;
+			    border-radius: 50%;
+			    transition: border-radius 0.5s;
+			}
+			.avatar:hover
+			{
+				border-radius: 40%;
+				cursor: pointer;
+			}
+			#name
+			{
+				height: 40px;
+				width: 100%;
+    			font-size: 20pt;
+    			text-align: center;
+    			margin-top: 15px;
+			}
+			#contacts
+			{
+				height: 40px;
+				width: 100%;
+    			font-size: 20pt;
+    			text-align: center;
+    			margin-top: 5px;
+
+			}
+			#contacts:hover > .drop 
+			{
+				display: block;
+			}
+			#contacts:hover
+			{
+				background: #fff1e8; 
+			}
+			.drop
+			{
+				display: none;
+				background: #fff1e8; 
+				padding: 10px;
+				font-size: 15pt;
+			}
+			#arrow
+			{
+				background: url(./arrow.svg) no-repeat;
+			    height: 15;
+			    width: 15;
+			    background-size: contain;
+			    display: inline-block;
+			}
+			.cont
+			{
+				padding: 5px;
+			}
+			a
+			{
+				color: black;
+			}
+			#info
+			{
+				width: 700px;
+				height: auto;
+				margin-left: 150px;
+				display: inline-block;
+				vertical-align: top;
+			}
+			h1
+			{
+				font-size: 25pt;
+				font-weight: normal;
+			}
+			.separator
+			{
+				background: url(https://webzone.ee/aaretlgst/00/logo/PL/divider.png) no-repeat;
+				background-size: contain;
+				mix-blend-mode: multiply;
+				width: 700px;
+				height: 50px;
+				margin: 100px auto 0 auto;
+			}
+			.news
+			{
+				width: fit-content;
+				margin: 0 auto;
+			}
+			#eror
+			{
+				text-align: center;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="top">
+		</div>
+		<div class = "page">
+			<div class = "middle">
+				<div id = "eror">
+					Когда-нибудь здесь будет замечательное наполнение, однако то время еще не настало!
+				</div>
+			</div>
+		</div>
+
+		</div>
+
+		<script type="text/javascript" src="./loader.js"></script>
+	</body>
+</html>
